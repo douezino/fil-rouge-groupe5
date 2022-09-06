@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-sleep 10
+
 python3 manage.py migrate
 python3 manage.py runserver
