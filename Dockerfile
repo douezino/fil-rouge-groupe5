@@ -1,3 +1,4 @@
+# source : https://ruddra.com/deploy-django-to-openshift-3/
 FROM python:3.8
 ENV PYTHONUNBUFFERED 1
 
