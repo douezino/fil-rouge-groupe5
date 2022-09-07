@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from socket import gethostname
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +15,8 @@ SECRET_KEY = os.getenv('SECRET_KEY_DJANGO','webap-default-h=!ic=tt-b$5-30fsh6&_1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0']
+# gethostname, os.environ.get('OPENSHIFT_APP_DNS') Openshift DNS only known after deployment success
+ALLOWED_HOSTS = [os.environ.get('OPENSHIFT_DNS'),'*']
 
 # allauth backends settings
 AUTHENTICATION_BACKENDS = [
@@ -58,7 +60,7 @@ ROOT_URLCONF = 'webApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,6 +85,14 @@ DATABASES = {
         'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
         'HOST': os.getenv('POSTGRESQL_HOST'),
         'PORT': os.getenv('POSTGRESQL_PORT'),
+    },
+    'openshiftpostgresql': {  # use command: ./manage.py migrate --database=openshiftpostgresql
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSGRESQL_DATABASE'),
+        'USER': os.getenv('POSTGRESQL_USER'),
+        'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
+        'HOST': '10.129.5.115', # openshift deployed postgresql pod ip
+        'PORT': '5432',
     }
 }
 
@@ -123,6 +133,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# media root
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL= '/media/'
+# static files dirs
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -148,3 +166,4 @@ LOGGING = {
         },
     },
 }
+
