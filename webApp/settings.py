@@ -91,8 +91,8 @@ DATABASES = {
         'NAME': os.getenv('POSGRESQL_DATABASE'),
         'USER': os.getenv('POSTGRESQL_USER'),
         'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
-        'HOST': '10.129.7.7', # openshift deployed postgresql pod ip
-        'PORT': '5432',
+        'HOST': os.getenv('OPENSHIFT_POSTGRES_PORT'), # openshift deployed postgresql pod ip
+        'PORT': os.getenv('POSTGRESQL_PORT'),
     }
 }
 
