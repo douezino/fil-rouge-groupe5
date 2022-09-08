@@ -80,19 +80,11 @@ WSGI_APPLICATION = 'webApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSGRESQL_DATABASE'),
-        'USER': os.getenv('POSTGRESQL_USER'),
-        'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
-        'HOST': os.getenv('POSTGRESQL_HOST'),
-        'PORT': os.getenv('POSTGRESQL_PORT'),
-    },
-    'openshiftpostgresql': {  # use command: ./manage.py migrate --database=openshiftpostgresql
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSGRESQL_DATABASE'),
-        'USER': os.getenv('POSTGRESQL_USER'),
-        'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('DATABASE_SERVICE_NAME'), # openshift deployed postgresql pod ip: https://groups.google.com/g/openshift/c/kgPC9AjelBg
-        'PORT': os.getenv('OPENSHIFT_POSTGRES_PORT'),
+        'PORT': '5432',
     }
 }
 
