@@ -19,7 +19,7 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: |
-          pytest --cov=./ --cov-report=xml --doctest-modules
+          coverage run --data-file=coverage-test-report.txt --branch -m pytest
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
