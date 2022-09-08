@@ -23,6 +23,7 @@
                       <br>
                       <h3>Nombre d'information dans l'application: {{totalStockInfo}}</h3>
 		      <br>
+                      <a href="{% url 'users:addinfo' %}"><button>Ajouter Information</button></a>
 			<table class="table table-sm">
 				<tr>
                                         <th>Nom Analyste</th>
@@ -34,22 +35,25 @@
                                         <th>Montant Dividendes</th>
                                         <th>Commentaires</th>
                                         <th>Info. du:</th>
+                                        <th>Supprimer/Modifier</th>
 				</tr>
 
-				{% for info in stock_info %}
-					<tr>
-                                                <td>{{info.user.username}}</td>
-						<td>{{info.codeAction}}</td>
-						<td>{{info.pays}}</td>
-						<td>{{info.industrie}}</td>
-                                                <td>{{info.resultat}}</td>
-                                                <td>{{info.potentiel}}</td>
-                                                <td>{{info.montantDividended}}</td>
-                                                <td>{{info.commentaires}}</td>
-                                                <td>{{info.recordDate}}</td>
+			{% for info in stock_info %}
+				<tr>
+                                        <td>{{info.user.username}}</td>
+					<td>{{info.codeAction}}</td>
+					<td>{{info.pays}}</td>
+					<td>{{info.industrie}}</td>
+                                        <td>{{info.resultat}}</td>
+                                        <td>{{info.potentiel}}</td>
+                                        <td>{{info.montantDividended}}</td>
+                                        <td>{{info.commentaires}}</td>
+                                        <td>{{info.recordDate}}</td>
+                                        <td><a href={% url 'users:deleteinfo' info.id %}><button>Supprimer</button></a>&nbsp<a href={% url 'users:updateinfo' info.id %}><button>Modifier</button></a></td>
+                                        
 
-					</tr>
-				{% endfor %}
+				</tr>
+			{% endfor %}
 
 		
 			</table>

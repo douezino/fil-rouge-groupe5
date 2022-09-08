@@ -7,13 +7,13 @@ class StockInfo(models.Model):
     codeAction = models.CharField(max_length=15, blank=True, null=True)
     pays = models.CharField(max_length=30, blank=True, null=True)
     industrie = models.CharField(max_length=30, blank=True, null=True)
-    resultat = models.IntegerField(blank=True, null=True)
+    resultat = models.CharField(max_length=15, blank=True, null=True)
     CHOIX = (
     ("BON", "Bon"),
     ("MAUVAIS", "Mauvais"),
     ("A SUIVRE", "A Suivre"),
     )
     potentiel = models.CharField(max_length=9, choices=CHOIX, default="A SUIVRE")
-    montantDividended = models.IntegerField(blank=True, null=True)
-    commentaires =  models.EmailField(max_length=75, blank=True, null=True)
+    montantDividende = models.CharField(max_length=15,blank=True, null=True)
+    commentaires =  models.CharField(max_length=150, blank=True, null=True)
     recordDate = models.DateTimeField(auto_now=True)
