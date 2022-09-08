@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 
@@ -80,3 +80,39 @@ def report(request):
     }
 
     return render(request, 'accounts/report.html', context)
+
+# add  stocks information in database
+@login_required(login_url='users:loginuser')
+def addInfo(request):
+  form = StockInfoForm()
+  if request.method == 'POST':
+    form = StockInfoForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('users:report')
+  context = {"form": form}
+  return render(request, "users/addinfoform.html", context)
+
+# delete stocks information from database
+@login_required(login_url='users:loginuser')
+def deleteInfo(request, pk):
+  StockInfoToDelete = StockInfo.objects.get(id=pk)
+  if request.method == "POST":
+    StockInfoToDelete.delete()
+    return redirect('users:report')
+  context = {"item": StockInfoToDelete}
+  return render(request, "users/deleteinfoform.html", context)
+
+
+# update stock info
+@login_required(login_url='users:loginuser')
+def updateInfo(request, pk):
+    StockInfoToUpdate = get_object_or_404(StockInfo, pk=pk)
+    form = StockInfoToUpdateForm(instance=StockInfoToUpdate)
+    if request.method == 'POST':
+        form = StockInfoToUpdateForm(request.POST, instance=StockInfoToUpdate)
+        if form.is_valid():
+            form.save()
+            return redirect('users:report')
+    context = {"form": form}
+    return render(request, "users/updateinfoform.html", context)

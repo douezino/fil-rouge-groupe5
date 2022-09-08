@@ -10,8 +10,13 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1','password2')
 
-# Restaurateur Forms
+# Stock Info  Forms
 class StockInfoForm(ModelForm):
     class Meta:
         model = StockInfo
         fields = '__all__' # or list of fields if needed
+
+class StockInfoToUpdateForm(forms.ModelForm):
+    class Meta:
+        model = StockInfo
+        fields = ['codeAction', 'pays', 'industrie', 'resultat', 'potentiel', 'montantDividende', 'commentaires']
