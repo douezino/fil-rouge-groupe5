@@ -9,7 +9,7 @@ python3 ./manage.py migrate --database=default
 OR either of the commands for one migration.
 
 We use gunicorn to serve the app in the pod and have a script in app/py that will migrate the database and runserver
-
+voir -
 
 
 Deployment:
