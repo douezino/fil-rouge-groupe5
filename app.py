@@ -9,7 +9,7 @@ os.system("python3 ./manage.py migrate")
 superuser="from django.contrib.auth.models import User; User.objects.create_superuser('djangoadmin', 'djangoadmin@example.com', 'm2iformation')"
 
 # create superuser django no input
-os.system("python3 manage.py shell -c "${superuser}"")
+#os.system("python3 manage.py shell -c "${superuser}"")
 
 # create the log file
 os.system("touch logs_webApp.log")
