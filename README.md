@@ -24,17 +24,6 @@ oc new-app --strategy=source <openshift_compatible_os_image>~<your_github_repo_u
 
 We successfully used: centos/python-38-centos7
 
-For a minimal CI/CD: 
-Create more tests (that works)
-Sonarqube and django test will run in Github Actions.
-You need to go settings (of your repository) to create a Webhook:
-From the Openshift console, after running your deployment commands, you need to get the "Developer" Console,
-click on the left side "Builds" tab, Then, Select your application and scroll down, your will see the Webhook part:
-- Get the Github one "With Secret", paste that URL in your Gihub Repository Settings > Webhooks > Add Webhook (Select option for push trigger, select Application/Json), then, save leaving rest to default settings.
-
-From now whenever your push to your upstream branch, you will get the app deployed on Openshift automatically and test running on Github Actions.
-You will be notified by email, if you have set your Github account properly, telling you about the status of the tests.
-
 Enjoy!
 
 Routes in the App:
