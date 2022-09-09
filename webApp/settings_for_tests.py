@@ -1,4 +1,4 @@
-import os
+/import os
 from pathlib import Path
 from socket import gethostname
 
@@ -76,33 +76,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'webApp.wsgi.application'
 
 
-# Postgres database setting
+# database setting to run tests
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-<<<<<<< HEAD
-        'NAME': os.getenv('POSGRESQL_DATABASE'),
-        'USER': os.getenv('POSTGRESQL_USER'),
-        'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
-        'HOST': os.getenv('POSTGRESQL_HOST'),
-        'PORT': os.getenv('POSTGRESQL_PORT'),
-    },
-    'openshiftpostgresql': {  # use command: ./manage.py migrate --database=openshiftpostgresql
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSGRESQL_DATABASE'),
-        'USER': os.getenv('POSTGRESQL_USER'),
-        'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
-        'HOST': '10.129.6.66', # openshift deployed postgresql pod ip
-=======
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_SERVICE_NAME'), # openshift deployed postgresql pod ip: https://groups.google.com/g/openshift/c/kgPC9AjelBg
->>>>>>> dev
-        'PORT': '5432',
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'databasefortests',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
 }
 
+# command to get this database to be used for tests
+import sys
+if 'test' in sys.argv or 'test_coverage' in sys.argv or 'test\_coverage' in sys.argv: #Covers regular testing and django-coverage
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    DATABASES['default']['NAME'] = ':memory:'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -152,25 +142,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# loggings: https://docs.djangoproject.com/en/4.1/topics/logging/#topic-logging-parts-formatters
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'logs_webApp.log',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
 

@@ -51,11 +51,18 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
-*.log
 
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
 target/
+
+# Cache
+/__pycache__/
+__pycache__/*
+__pycache__
+
+# migrations
+migration
+migration/*
