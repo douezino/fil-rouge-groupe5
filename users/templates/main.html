@@ -90,22 +90,16 @@
 					<b><center>Choisir une Page</center></b>
 
 							<div class="d-flex justify-content-center mt-3 login_container">
-								<input type ="button" class="btn login_btn" onclick="window.location.href = './page1.html';" value="Page 1">
+								<input type ="button" class="btn login_btn" onclick="location.href='{% url 'users:addinfo' %}';" value="Enter Nouvelle Analyse">
 				   			</div>
-							
 							<div class="d-flex justify-content-center mt-3 login_container">
-								<input type ="button" class="btn login_btn" onclick="window.location.href = 'http://www.google.fr';" value="Page 2">
+								<input type ="button" class="btn login_btn" onclick="location.href='{% url 'users:report' %}';" value="Voir Page Rapport">
 							</div>
-
 							<div class="d-flex justify-content-center mt-3 login_container">
-								<input type ="button" class="btn login_btn" onclick="window.location.href = 'http://www.google.fr';" value="Register">
+								<input type ="button" class="btn login_btn" onclick="location.href='{% url 'users:logoutuser' %}';" value="Deconnection">
 							</div>
 					</form>
-
 				</div>
-				
-			
-				
 			</div>
 		</div>
 	</div>
