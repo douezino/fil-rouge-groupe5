@@ -80,7 +80,6 @@ WSGI_APPLICATION = 'webApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-<<<<<<< HEAD
         'NAME': os.getenv('POSGRESQL_DATABASE'),
         'USER': os.getenv('POSTGRESQL_USER'),
         'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
@@ -92,15 +91,9 @@ DATABASES = {
         'NAME': os.getenv('POSGRESQL_DATABASE'),
         'USER': os.getenv('POSTGRESQL_USER'),
         'PASSWORD': os.getenv('POSTGRESQL_PASSWORD'),
-        'HOST': '10.129.6.66', # openshift deployed postgresql pod ip
-=======
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_SERVICE_NAME'), # openshift deployed postgresql pod ip: https://groups.google.com/g/openshift/c/kgPC9AjelBg
->>>>>>> dev
+        'HOST': '10.129.4.181', # openshift deployed postgresql pod ip
         'PORT': '5432',
-    },
+    }
 }
 
 
